@@ -29,6 +29,7 @@ Poetry를 사용하여 필요한 의존성을 설치합니다:
 
 ```bash
 poetry install
+```
 
 
 ---
