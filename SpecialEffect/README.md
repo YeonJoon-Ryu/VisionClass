@@ -55,6 +55,7 @@ This is a Python application that applies various special effects to images, suc
 - OpenCV 4.7.0.68
 - PyQt5 5.15.9
 - NumPy 1.24.3
+- opencv-contrib-python 4.7.0.68
 
 ## Installation
 
