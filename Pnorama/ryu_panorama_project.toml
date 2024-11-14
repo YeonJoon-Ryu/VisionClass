@@ -1,0 +1,73 @@
+[tool.poetry]
+name = "panorama-application"
+version = "1.0.0"
+description = "PyQt5 기반 파노라마 이미지 생성 및 조작 애플리케이션"
+authors = ["Ryu"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10.11"
+numpy = "1.24.3"
+opencv-python = "4.7.0.68"
+PyQt5 = "5.15.9"
+PyQt5-Qt5 = "5.15.2"
+PyQt5_sip = "12.15.0"
+setuptools = "65.5.0"
+
+[tool.poetry.dev-dependencies]
+# 테스트 및 개발 환경을 위한 의존성을 여기에 추가할 수 있습니다.
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "Panorama Application"
+description = "PyQt5 기반 파노라마 이미지 생성 및 조작 애플리케이션"
+version = "1.0.0"
+author = "Ryu"
+dependencies = ["numpy", "opencv-python", "PyQt5"]
+
+[application]
+window_title = "파노라마 영상"
+geometry = { width = 700, height = 200 }
+description = "웹캠을 사용하여 여러 이미지를 수집하고, 이를 이용해 파노라마를 생성하고 편집할 수 있는 애플리케이션입니다."
+
+[buttons]
+collect_button = "영상 수집: 웹캠에서 영상을 수집합니다."
+show_button = "봉합: 수집된 영상을 나열하여 표시합니다."
+stitch_button = "저장: 수집된 영상으로 파노라마를 생성합니다."
+save_button = "나가기: 생성된 파노라마를 파일로 저장합니다."
+quit_button = "나가기: 프로그램을 종료합니다."
+
+[class.Panorama]
+description = "메인 애플리케이션 클래스이며, PyQt의 QMainWindow를 확장하여 GUI와 파노라마 생성 기능을 관리합니다."
+inherits = "QMainWindow"
+
+[class.Panorama.methods]
+init = "애플리케이션 초기화 및 GUI 요소 설정."
+collectFunction = "웹캠을 통해 영상을 수집하는 기능. 'c' 키로 프레임을 수집하고 'q' 키로 종료합니다."
+showFunction = "수집된 영상을 작은 크기로 나열하여 확인할 수 있도록 표시합니다."
+stitchFunction = "OpenCV의 Stitcher 객체를 이용하여 수집된 영상으로 파노라마를 생성합니다. 오류 발생 시 상태 코드에 따른 에러 메시지를 표시합니다."
+displayZoomPan = "파노라마 이미지에 확대 및 이동 기능을 제공합니다. '+', '-', 'w', 's', 'a', 'd' 키로 제어합니다."
+updateZoomPan = "현재 확대 및 이동 상태를 기반으로 이미지를 업데이트합니다."
+saveFunction = "QFileDialog를 통해 파노라마 이미지를 파일로 저장합니다."
+quitFunction = "캡처 중인 웹캠과 OpenCV 창을 모두 종료하고 애플리케이션을 닫습니다."
+
+[error_handling]
+stitch_error = "파노라마 생성 실패 시 오류 코드와 함께 상세 오류 메시지를 표시합니다."
+camera_connection_error = "카메라 연결 실패 시 프로그램이 종료됩니다."
+
+[zoom_pan_control]
+description = "파노라마 이미지 확대 및 이동 기능."
+controls = { zoom_in = "+ 키", zoom_out = "- 키", pan_up = "w 키", pan_down = "s 키", pan_left = "a 키", pan_right = "d 키" }
+zoom_limit = { max_zoom = 3.0, min_zoom = 1.0 }
+
+[dependencies.PyQt5]
+description = "GUI 요소와 창 관리를 위해 PyQt5를 사용합니다."
+
+[dependencies.opencv-python]
+description = "영상 수집과 이미지 봉합 및 파노라마 생성을 위해 OpenCV를 사용합니다."
+
+[dependencies.numpy]
+description = "이미지 배열 결합 및 크기 조정을 위해 NumPy를 사용합니다."
